@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.*;
 
 /**
@@ -28,10 +30,11 @@ class PanAdd extends JPanel implements ActionListener {
     JLabel lblScore = new JLabel();
     JLabel lblTotal = new JLabel();
     JLabel lblFinal = new JLabel();
+    JLabel lblTime = new JLabel();
     JButton btnMain = new JButton();
-    int nAns, nScore = 0, nTotal = 0;
-    int n1, n2;
-    String sN1 = "", sN2 = "", sScore = "", sTotal = "";
+    Timer tmrTime = new Timer(true);
+    int nAns, nScore = 0, nTotal = 0, n1, n2, nTime = 30;
+    String sN1 = "", sN2 = "", sScore = "", sTotal = "", sTime = "";
     JLabel lblOut = new JLabel();
 
     public PanAdd() {
@@ -45,6 +48,8 @@ class PanAdd extends JPanel implements ActionListener {
         add(lblAdd);
         txtIn.setBounds(200, 50, 100, 20);
         add(txtIn);
+        lblTime.setBounds(10, 50, 50, 20);
+        add(lblTime);
         n1 = (int) (Math.random() * 10);
         n2 = (int) (Math.random() * 10);
         nAns = n1 + n2;
@@ -59,8 +64,8 @@ class PanAdd extends JPanel implements ActionListener {
         lblNum2.setText(sN2);
         lblNum2.setBounds(190, 50, 20, 20);
         add(lblNum2);
-        sScore+=nScore;
-        sTotal+=nScore;
+        sScore += nScore;
+        sTotal += nScore;
         lblScore.setBounds(150, 90, 100, 10);
         lblScore.setText("Score: " + sScore + " / " + sTotal);
         add(lblScore);
@@ -72,11 +77,25 @@ class PanAdd extends JPanel implements ActionListener {
         lblWrong.setFont(new Font("Serif", Font.PLAIN, 30));
         lblWrong.setBounds(320, 50, 1000, 35);
         lblWrong.setForeground(Color.RED);
-        lblWrong.setText("WRONG :(");        
+        lblWrong.setText("WRONG :(");
         txtIn.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent evt) {
+        lblTime.setText("");
+        tmrTime.scheduleAtFixedRate(
+                new TimerTask() {
+                    public void run() {
+                        nTime = nTime - 1;
+                        revalidate();
+                        repaint();
+                    }
+                }, 0, 1000);
+        revalidate();
+        repaint();
+        sTime = "";
+        sTime += nTime;
+        lblTime.setText("00:" + sTime);
         int nUser;
         String sWord = txtIn.getText();
         nUser = (int) Integer.parseInt(sWord);
