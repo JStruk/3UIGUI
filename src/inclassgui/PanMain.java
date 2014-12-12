@@ -22,11 +22,9 @@ class PanMain extends JPanel implements ActionListener {
     JButton btnMult = new JButton();
     JButton btnDiv = new JButton();
     JButton btnMix = new JButton();
-    PanAdd panAdd = new PanAdd();
-
     public PanMain() {
         btnAdd.setText("Addition! :)");
-        btnAdd.addActionListener(this);
+        btnAdd.setBounds(10, 10, 20, 20);
         add(btnAdd);
         btnSub.setText("Subtraction! :)");
         add(btnSub);
@@ -36,16 +34,9 @@ class PanMain extends JPanel implements ActionListener {
         add(btnDiv);
         btnMix.setText("Mix 'em! :)");
         add(btnMix);
-
-
     }
 
     public void actionPerformed(ActionEvent evt) {
-       FraMain.panMain.setVisible(false);
-        revalidate();
-        add(panAdd);
-        panAdd.setVisible(true);
-       // System.out.println("Clicked!");
-        revalidate();
+      
     }
 }

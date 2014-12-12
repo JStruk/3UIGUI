@@ -18,6 +18,7 @@ public class InClassGUI {
      */
     public static void main(String[] args) {
         FraMain frame = new FraMain();
+       // frame.setLayout(null);
         //  frame.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

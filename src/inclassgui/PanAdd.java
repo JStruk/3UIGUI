@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.NumberFormat;
 import javax.swing.*;
 
 /**
@@ -26,18 +25,21 @@ class PanAdd extends JPanel implements ActionListener {
     JLabel lblOp = new JLabel();
     JLabel lblCorrect = new JLabel("Correct!");
     JLabel lblWrong = new JLabel("Wrong :(");
-    int nAns;
+    JLabel lblScore = new JLabel();
+    JButton btnMain = new JButton();
+    int nAns, nScore = 0;
     int n1, n2;
-    String sN1 = "", sN2 = "";
+    String sN1 = "", sN2 = "", sScore = "";
     JLabel lblOut = new JLabel();
 
     public PanAdd() {
-
+        btnMain.setText("Back To Main!");
+        add(btnMain);
         lblJuds.setText("JUDDY>BEEEEMER ;)");
         lblJuds.setBounds(100, 100, 20, 20);
         lblJuds.setFont(new Font("Serif", Font.PLAIN, 45));
         lblJuds.setForeground(Color.BLACK);
-        add(lblJuds);
+        //    add(lblJuds);
         add(txtIn);
         n1 = (int) (Math.random() * 10);
         n2 = (int) (Math.random() * 10);
@@ -58,22 +60,21 @@ class PanAdd extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent evt) {
-        NumberFormat nf = NumberFormat.getNumberInstance();
-        nf.setMaximumFractionDigits(2);
-        nf.setMinimumFractionDigits(2);
         int nUser;
         String sWord = txtIn.getText();
         nUser = (int) Integer.parseInt(sWord);
         if (nUser == nAns) {
-            remove(lblWrong);
-            add(lblCorrect);
+            nScore++;
+            System.out.println(nScore);
             System.out.println("Correct:)");
             n1 = 0;
             n2 = 0;
             sN1 = "";
             sN2 = "";
+            sScore="";
             lblNum1.setText("");
             lblNum2.setText("");
+            lblScore.setText("");
             System.out.println(nAns);
             System.out.println(nUser);
             n1 = (int) (Math.random() * 10);
@@ -81,6 +82,9 @@ class PanAdd extends JPanel implements ActionListener {
             nAns = n1 + n2;
             sN1 += (n1);
             sN2 += (n2);
+            sScore += nScore;
+            lblScore.setText("Score: "+sScore);
+            add(lblScore);
             lblNum1.setText(sN1);
             add(lblNum1);
             lblOp.setText(" + ");
@@ -88,6 +92,10 @@ class PanAdd extends JPanel implements ActionListener {
             lblNum2.setText(sN2);
             add(lblNum2);
             txtIn.setText("");
+            remove(lblWrong);
+            add(lblCorrect);
+            add(lblScore);
+            revalidate();
         } else {
             add(lblWrong);
             remove(lblCorrect);
