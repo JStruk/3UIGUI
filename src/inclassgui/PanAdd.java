@@ -104,20 +104,59 @@ class PanAdd extends JPanel implements ActionListener {
             revalidate();
         } else {
             nTotal++;
+            System.out.println(nScore);
+            System.out.println("Correct:)");
+            n1 = 0;
+            n2 = 0;
+            sN1 = "";
+            sN2 = "";
+            sScore = "";
             sTotal = "";
-            sScore="";
+            lblNum1.setText("");
+            lblNum2.setText("");
             lblScore.setText("");
             lblTotal.setText("");
+            System.out.println(nAns);
+            System.out.println(nUser);
+            n1 = (int) (Math.random() * 10);
+            n2 = (int) (Math.random() * 10);
+            nAns = n1 + n2;
+            sN1 += (n1);
+            sN2 += (n2);
             sScore += nScore;
             sTotal += nTotal;
             lblScore.setText("Score: " + sScore + " / " + sTotal);
-            add(lblScore);
-            add(lblWrong);
-            remove(lblCorrect);
-            System.out.println("Wrong:(");
+
+            lblNum1.setText(sN1);
+            add(lblNum1);
+            lblOp.setText(" + ");
+            add(lblOp);
+            lblNum2.setText(sN2);
+            add(lblNum2);
             txtIn.setText("");
+            add(lblScore);
+            remove(lblCorrect);
+            add(lblWrong);
+            revalidate();
+            /* nTotal++;
+             sTotal = "";
+             sScore="";
+             lblScore.setText("");
+             lblTotal.setText("");
+             sScore += nScore;
+             sTotal += nTotal;
+             lblScore.setText("Score: " + sScore + " / " + sTotal);
+             add(lblScore);
+             add(lblWrong);
+             remove(lblCorrect);
+             System.out.println("Wrong:(");
+             txtIn.setText("");*/
         }
-        if(nTotal==25){
+        lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + nTotal);
+        lblFinal.setFont(new Font("Serif", Font.PLAIN, 20));
+        revalidate();
+
+        if (nTotal == 25) {
             remove(txtIn);
             remove(lblNum1);
             remove(lblOp);
@@ -126,8 +165,10 @@ class PanAdd extends JPanel implements ActionListener {
             remove(btnMain);
             remove(lblWrong);
             remove(lblCorrect);
-            
-            
+            add(lblFinal);
+            add(btnMain);
+            revalidate();
+            repaint();
         }
     }
 }
