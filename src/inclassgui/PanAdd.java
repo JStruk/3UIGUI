@@ -26,10 +26,12 @@ class PanAdd extends JPanel implements ActionListener {
     JLabel lblCorrect = new JLabel("Correct!");
     JLabel lblWrong = new JLabel("Wrong :(");
     JLabel lblScore = new JLabel();
+    JLabel lblTotal = new JLabel();
+    JLabel lblFinal = new JLabel();
     JButton btnMain = new JButton();
-    int nAns, nScore = 0;
+    int nAns, nScore = 0, nTotal = 0;
     int n1, n2;
-    String sN1 = "", sN2 = "", sScore = "";
+    String sN1 = "", sN2 = "", sScore = "", sTotal = "";
     JLabel lblOut = new JLabel();
 
     public PanAdd() {
@@ -65,16 +67,19 @@ class PanAdd extends JPanel implements ActionListener {
         nUser = (int) Integer.parseInt(sWord);
         if (nUser == nAns) {
             nScore++;
+            nTotal++;
             System.out.println(nScore);
             System.out.println("Correct:)");
             n1 = 0;
             n2 = 0;
             sN1 = "";
             sN2 = "";
-            sScore="";
+            sScore = "";
+            sTotal = "";
             lblNum1.setText("");
             lblNum2.setText("");
             lblScore.setText("");
+            lblTotal.setText("");
             System.out.println(nAns);
             System.out.println(nUser);
             n1 = (int) (Math.random() * 10);
@@ -83,7 +88,8 @@ class PanAdd extends JPanel implements ActionListener {
             sN1 += (n1);
             sN2 += (n2);
             sScore += nScore;
-            lblScore.setText("Score: "+sScore);
+            sTotal += nTotal;
+            lblScore.setText("Score: " + sScore + " / " + sTotal);
             add(lblScore);
             lblNum1.setText(sN1);
             add(lblNum1);
@@ -97,10 +103,31 @@ class PanAdd extends JPanel implements ActionListener {
             add(lblScore);
             revalidate();
         } else {
+            nTotal++;
+            sTotal = "";
+            sScore="";
+            lblScore.setText("");
+            lblTotal.setText("");
+            sScore += nScore;
+            sTotal += nTotal;
+            lblScore.setText("Score: " + sScore + " / " + sTotal);
+            add(lblScore);
             add(lblWrong);
             remove(lblCorrect);
             System.out.println("Wrong:(");
             txtIn.setText("");
+        }
+        if(nTotal==25){
+            remove(txtIn);
+            remove(lblNum1);
+            remove(lblOp);
+            remove(lblNum2);
+            remove(lblScore);
+            remove(btnMain);
+            remove(lblWrong);
+            remove(lblCorrect);
+            
+            
         }
     }
 }
