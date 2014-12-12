@@ -6,10 +6,17 @@
 
 package inclassgui;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Justin
  */
-public class PanMult {
-    
+public class PanMult extends JPanel{
+      JButton btnMain = new JButton();
+    public PanMult(){
+        btnMain.setText("Back To Main!");
+        add(btnMain);
+    }
 }

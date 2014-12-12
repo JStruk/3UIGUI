@@ -3,13 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package inclassgui;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Justin
  */
-public class PanMix {
-    
+public class PanMix extends JPanel {
+
+    JButton btnMain = new JButton();
+
+    public PanMix() {
+        btnMain.setText("Back To Main!");
+        add(btnMain);
+    }
 }
