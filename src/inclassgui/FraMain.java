@@ -17,6 +17,7 @@ public class FraMain extends JFrame implements ActionListener {
     public FraMain() {
         panMain.setLayout(null);
         panAdd.setLayout(null);
+        panSub.setLayout(null);
         setVisible(true);
         setTitle("JUDDY @ GUI");
         setSize(500, 500);
