@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//Justin Struk
 package inclassgui;
 
 import java.awt.Color;
@@ -11,11 +8,6 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
-
-/**
- *
- * @author struj3903
- */
 class PanAdd extends JPanel implements ActionListener {
 
     JTextField txtIn = new JTextField(10);
