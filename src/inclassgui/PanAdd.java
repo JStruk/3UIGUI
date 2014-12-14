@@ -31,8 +31,11 @@ class PanAdd extends JPanel implements ActionListener {
     JLabel lblTotal = new JLabel();
     JLabel lblFinal = new JLabel();
     JLabel lblTime = new JLabel();
+    JLabel lblTimeUp = new JLabel();
     JButton btnMain = new JButton();
     Timer tmrTime = new Timer(true);
+    Timer tmrUpdate = new Timer(true);
+    boolean isStarted = false, isTimeUp = false;
     int nAns, nScore = 0, nTotal = 0, n1, n2, nTime = 30;
     String sN1 = "", sN2 = "", sScore = "", sTotal = "", sTime = "";
     JLabel lblOut = new JLabel();
@@ -48,8 +51,6 @@ class PanAdd extends JPanel implements ActionListener {
         add(lblAdd);
         txtIn.setBounds(200, 50, 100, 20);
         add(txtIn);
-        lblTime.setBounds(10, 50, 50, 20);
-        add(lblTime);
         n1 = (int) (Math.random() * 10);
         n2 = (int) (Math.random() * 10);
         nAns = n1 + n2;
@@ -78,24 +79,58 @@ class PanAdd extends JPanel implements ActionListener {
         lblWrong.setBounds(320, 50, 1000, 35);
         lblWrong.setForeground(Color.RED);
         lblWrong.setText("WRONG :(");
+        lblTimeUp.setText("TIMES UP!");
+        lblTimeUp.setFont(new Font("Serif", Font.PLAIN, 30));
+        lblTimeUp.setBounds(75, 25, 1000, 100);
         txtIn.addActionListener(this);
-    }
-
-    public void actionPerformed(ActionEvent evt) {
-        lblTime.setText("");
+        sTime += nTime;
+        lblTime.setText("00:" + sTime);
+        lblTime.setBounds(10, 50, 50, 20);
+        add(lblTime);
         tmrTime.scheduleAtFixedRate(
                 new TimerTask() {
                     public void run() {
-                        nTime = nTime - 1;
-                        revalidate();
-                        repaint();
+                        if (isStarted) {
+                            nTime = nTime - 1;
+                            revalidate();
+                            repaint();
+                            if (nTime <= 0) {
+                                isStarted = false;
+                                remove(txtIn);
+                                remove(lblNum1);
+                                remove(lblOp);
+                                remove(lblNum2);
+                                remove(lblScore);
+                                remove(lblWrong);
+                                remove(lblCorrect);
+                                nTotal = 25;
+                                lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + nTotal);
+                                add(lblTimeUp);
+                                add(lblFinal);
+                                revalidate();
+                                repaint();
+                            }
+                        }
                     }
                 }, 0, 1000);
+        tmrUpdate.scheduleAtFixedRate(
+                new TimerTask() {
+                    public void run() {
+                        if (isStarted) {
+                            sTime = "";
+                            sTime += nTime;
+                            lblTime.setText("00:" + sTime);
+                            revalidate();
+                            repaint();
+                        }
+                    }
+                }, 0, 1);
+    }
+
+    public void actionPerformed(ActionEvent evt) {
+        isStarted = true;
         revalidate();
         repaint();
-        sTime = "";
-        sTime += nTime;
-        lblTime.setText("00:" + sTime);
         int nUser;
         String sWord = txtIn.getText();
         nUser = (int) Integer.parseInt(sWord);
@@ -120,7 +155,6 @@ class PanAdd extends JPanel implements ActionListener {
             sScore += nScore;
             sTotal += nTotal;
             lblScore.setText("Score: " + sScore + " / " + sTotal);
-            add(lblScore);
             lblNum1.setText(sN1);
             lblOp.setText(" + ");
             lblNum2.setText(sN2);
@@ -166,14 +200,13 @@ class PanAdd extends JPanel implements ActionListener {
         lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + nTotal);
         lblFinal.setFont(new Font("Serif", Font.PLAIN, 20));
         revalidate();
-
         if (nTotal == 25) {
+            isStarted = false;
             remove(txtIn);
             remove(lblNum1);
             remove(lblOp);
             remove(lblNum2);
             remove(lblScore);
-            remove(btnMain);
             remove(lblWrong);
             remove(lblCorrect);
             add(lblFinal);
