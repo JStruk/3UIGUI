@@ -28,8 +28,8 @@ class PanAdd extends JPanel implements ActionListener {
     Timer tmrTime = new Timer(true);
     Timer tmrUpdate = new Timer(true);
     boolean isStarted = false, isTimeUp = false;
-    int nAns, nScore = 0, nTotal = 0, n1, n2, nTime = 30;
-    String sN1 = "", sN2 = "", sScore = "", sTotal = "", sTime = "";
+    int nAns, nScore = 0, n1, n2, nTime = 30, nCount=0;
+    String sN1 = "", sN2 = "", sScore = "", sTotal = "25", sTime = "";
     JLabel lblOut = new JLabel();
 
     public PanAdd() {
@@ -58,7 +58,6 @@ class PanAdd extends JPanel implements ActionListener {
         lblNum2.setBounds(190, 50, 20, 20);
         add(lblNum2);
         sScore += nScore;
-        sTotal += nScore;
         lblScore.setBounds(150, 90, 100, 10);
         lblScore.setText("Score: " + sScore + " / " + sTotal);
         add(lblScore);
@@ -95,8 +94,7 @@ class PanAdd extends JPanel implements ActionListener {
                                 remove(lblScore);
                                 remove(lblWrong);
                                 remove(lblCorrect);
-                                nTotal = 25;
-                                lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + nTotal);
+                                lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + sTotal);
                                 add(lblTimeUp);
                                 add(lblFinal);
                                 revalidate();
@@ -127,8 +125,8 @@ class PanAdd extends JPanel implements ActionListener {
         String sWord = txtIn.getText();
         nUser = (int) Integer.parseInt(sWord);
         if (nUser == nAns) {
+            nCount++;
             nScore++;
-            nTotal++;
             System.out.println(nScore);
             System.out.println("Correct:)");
             n1 = 0;
@@ -145,7 +143,7 @@ class PanAdd extends JPanel implements ActionListener {
             sN1 += (n1);
             sN2 += (n2);
             sScore += nScore;
-            sTotal += nTotal;
+            sTotal="25";
             lblScore.setText("Score: " + sScore + " / " + sTotal);
             lblNum1.setText(sN1);
             lblOp.setText(" + ");
@@ -157,7 +155,7 @@ class PanAdd extends JPanel implements ActionListener {
             revalidate();
             repaint();
         } else {
-            nTotal++;
+            nCount++;
             System.out.println(nScore);
             System.out.println("Correct:)");
             n1 = 0;
@@ -174,7 +172,6 @@ class PanAdd extends JPanel implements ActionListener {
             sN1 += (n1);
             sN2 += (n2);
             sScore += nScore;
-            sTotal += nTotal;
             lblScore.setText("Score: " + sScore + " / " + sTotal);
             lblNum1.setText(sN1);
             add(lblNum1);
@@ -189,10 +186,10 @@ class PanAdd extends JPanel implements ActionListener {
             repaint();
             revalidate();
         }
-        lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + nTotal);
+        lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + sTotal);
         lblFinal.setFont(new Font("Serif", Font.PLAIN, 20));
         revalidate();
-        if (nTotal == 25) {
+        if (nCount == 25) {
             isStarted = false;
             remove(txtIn);
             remove(lblNum1);
