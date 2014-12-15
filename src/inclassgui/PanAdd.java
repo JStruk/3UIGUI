@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
+
 class PanAdd extends JPanel implements ActionListener {
 
     JTextField txtIn = new JTextField(10);
@@ -28,7 +29,7 @@ class PanAdd extends JPanel implements ActionListener {
     Timer tmrTime = new Timer(true);
     Timer tmrUpdate = new Timer(true);
     boolean isStarted = false, isTimeUp = false;
-    int nAns, nScore = 0, n1, n2, nTime = 30, nCount=0;
+    int nAns, nScore = 0, n1, n2, nTime = 30, nCount = 0;
     String sN1 = "", sN2 = "", sScore = "", sTotal = "25", sTime = "";
     JLabel lblOut = new JLabel();
 
@@ -80,41 +81,41 @@ class PanAdd extends JPanel implements ActionListener {
         add(lblTime);
         tmrTime.scheduleAtFixedRate(
                 new TimerTask() {
-                    public void run() {
-                        if (isStarted) {
-                            nTime = nTime - 1;
-                            revalidate();
-                            repaint();
-                            if (nTime <= 0) {
-                                isStarted = false;
-                                remove(txtIn);
-                                remove(lblNum1);
-                                remove(lblOp);
-                                remove(lblNum2);
-                                remove(lblScore);
-                                remove(lblWrong);
-                                remove(lblCorrect);
-                                lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + sTotal);
-                                add(lblTimeUp);
-                                add(lblFinal);
-                                revalidate();
-                                repaint();
-                            }
-                        }
+            public void run() {
+                if (isStarted) {
+                    nTime = nTime - 1;
+                    revalidate();
+                    repaint();
+                    if (nTime <= 0) {
+                        isStarted = false;
+                        remove(txtIn);
+                        remove(lblNum1);
+                        remove(lblOp);
+                        remove(lblNum2);
+                        remove(lblScore);
+                        remove(lblWrong);
+                        remove(lblCorrect);
+                        lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + sTotal);
+                        add(lblTimeUp);
+                        add(lblFinal);
+                        revalidate();
+                        repaint();
                     }
-                }, 0, 1000);
+                }
+            }
+        }, 0, 1000);
         tmrUpdate.scheduleAtFixedRate(
                 new TimerTask() {
-                    public void run() {
-                        if (isStarted) {
-                            sTime = "";
-                            sTime += nTime;
-                            lblTime.setText("00:" + sTime);
-                            revalidate();
-                            repaint();
-                        }
-                    }
-                }, 0, 1);
+            public void run() {
+                if (isStarted) {
+                    sTime = "";
+                    sTime += nTime;
+                    lblTime.setText("00:" + sTime);
+                    revalidate();
+                    repaint();
+                }
+            }
+        }, 0, 1);
     }
 
     public void actionPerformed(ActionEvent evt) {
@@ -143,7 +144,7 @@ class PanAdd extends JPanel implements ActionListener {
             sN1 += (n1);
             sN2 += (n2);
             sScore += nScore;
-            sTotal="25";
+            sTotal = "25";
             lblScore.setText("Score: " + sScore + " / " + sTotal);
             lblNum1.setText(sN1);
             lblOp.setText(" + ");
@@ -163,7 +164,7 @@ class PanAdd extends JPanel implements ActionListener {
             sN1 = "";
             sN2 = "";
             sScore = "";
-            sTotal = "";
+            sTotal = "25";
             System.out.println(nAns);
             System.out.println(nUser);
             n1 = (int) (Math.random() * 10);

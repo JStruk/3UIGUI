@@ -47,7 +47,7 @@ class PanSub extends JPanel implements ActionListener {
         lblSub.setText("SUBTRACTION!");
         lblSub.setFont(new Font("Serif", Font.PLAIN, 20));
         lblSub.setForeground(Color.magenta);
-        lblSub.setBounds(150, 10, 100, 20);
+        lblSub.setBounds(150, 10, 1000, 20);
         add(lblSub);
         txtIn.setBounds(200, 50, 100, 20);
         add(txtIn);
