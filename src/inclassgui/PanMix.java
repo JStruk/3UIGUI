@@ -43,7 +43,7 @@ class PanMix extends JPanel implements ActionListener {
         lblMix.setForeground(Color.magenta);
         lblMix.setBounds(150, 10, 1000, 20);
         add(lblMix);
-        txtIn.setBounds(200, 50, 100, 20);
+        txtIn.setBounds(225, 50, 100, 20);
         add(txtIn);
         nRand = nMin + (int) (Math.random() * ((nMax - nMin) + 1));
         n1 = (int) (Math.random() * 10);
@@ -51,34 +51,32 @@ class PanMix extends JPanel implements ActionListener {
         sN1 += n1;
         sN2 += n1;
         if (nRand == 1) {//Add   
+            lblOp.setText(" + ");
             sN1 += n1;
             sN2 += n2;
             lblNum1.setText(sN1);
             lblNum2.setText(sN2);
-            lblOp.setText(" + ");
             nAns = n1 + n2;
         } else if (nRand == 2) {//Sub
+            lblOp.setText(" - ");
             if (n2 > n1) {
                 nAns = n2 - n1;
                 lblNum1.setText(sN2);
                 lblNum2.setText(sN1);
-                lblOp.setText(" - ");
-                nAns = n2 - n1;
             } else {
                 nAns = n1 - n2;
                 lblNum1.setText(sN1);
                 lblNum2.setText(sN2);
             }
         } else if (nRand == 3) {   //Mult
-
             lblOp.setText(" * ");
             lblNum1.setText(sN1);
             lblNum2.setText(sN2);
             nAns = n1 * n2;
         } else if (nRand == 4) {//Div
-              n1 = (int) (Math.random() * 100);
-        n2 = (int) (Math.random() * 100);
             lblOp.setText(" / ");
+            n1 = (int) (Math.random() * 100);
+            n2 = (int) (Math.random() * 100);
             do {
                 sN1 = "";
                 sN2 = "";
@@ -101,7 +99,6 @@ class PanMix extends JPanel implements ActionListener {
         }
         lblNum1.setBounds(150, 50, 20, 20);
         add(lblNum1);
-      //  lblOp.setText(" + ");
         lblOp.setBounds(170, 50, 20, 20);
         add(lblOp);
         lblNum2.setBounds(190, 50, 20, 20);
@@ -188,14 +185,12 @@ class PanMix extends JPanel implements ActionListener {
             System.out.println(nUser);
             n1 = (int) (Math.random() * 10);
             n2 = (int) (Math.random() * 10);
-          //  nAns = n1 + n2;
             sN1 += (n1);
             sN2 += (n2);
             sScore += nScore;
             sTotal = "25";
             lblScore.setText("Score: " + sScore + " / " + sTotal);
             lblNum1.setText(sN1);
-           // lblOp.setText(" + ");
             lblNum2.setText(sN2);
             txtIn.setText("");
             remove(lblWrong);
@@ -217,7 +212,6 @@ class PanMix extends JPanel implements ActionListener {
             System.out.println(nUser);
             n1 = (int) (Math.random() * 10);
             n2 = (int) (Math.random() * 10);
-          //  nAns = n1 + n2;
             sN1 += (n1);
             sN2 += (n2);
             sScore += nScore;
