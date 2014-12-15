@@ -13,7 +13,7 @@ class PanMult extends JPanel implements ActionListener {
     JTextField txtIn = new JTextField(10);
     String sText;
     JButton btnOut = new JButton();
-    JLabel lblAdd = new JLabel();
+    JLabel lblMult = new JLabel();
     JLabel lblNum1 = new JLabel();
     JLabel lblNum2 = new JLabel();
     JLabel lblOp = new JLabel();
@@ -28,7 +28,7 @@ class PanMult extends JPanel implements ActionListener {
     Timer tmrTime = new Timer(true);
     Timer tmrUpdate = new Timer(true);
     boolean isStarted = false, isTimeUp = false;
-    int nAns, nScore = 0, n1, n2, nTime = 30, nCount=0;
+    int nAns, nScore = 0, n1, n2, nTime = 40, nCount=0;
     String sN1 = "", sN2 = "", sScore = "", sTotal = "25", sTime = "";
     JLabel lblOut = new JLabel();
 
@@ -36,11 +36,11 @@ class PanMult extends JPanel implements ActionListener {
         btnMain.setText("Back To Main!");
         btnMain.setBounds(10, 10, 115, 20);
         add(btnMain);
-        lblAdd.setText("MULTIPLICATION!");
-        lblAdd.setFont(new Font("Serif", Font.PLAIN, 20));
-        lblAdd.setForeground(Color.magenta);
-        lblAdd.setBounds(150, 10, 100, 20);
-        add(lblAdd);
+        lblMult.setText("MULTIPLICATION!");
+        lblMult.setFont(new Font("Serif", Font.PLAIN, 20));
+        lblMult.setForeground(Color.magenta);
+        lblMult.setBounds(150, 10, 1000, 20);
+        add(lblMult);
         txtIn.setBounds(200, 50, 100, 20);
         add(txtIn);
         n1 = (int) (Math.random() * 10);

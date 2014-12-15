@@ -29,7 +29,7 @@ class PanAdd extends JPanel implements ActionListener {
     Timer tmrTime = new Timer(true);
     Timer tmrUpdate = new Timer(true);
     boolean isStarted = false, isTimeUp = false;
-    int nAns, nScore = 0, n1, n2, nTime = 30, nCount = 0;
+    int nAns, nScore = 0, n1, n2, nTime = 35, nCount = 0;
     String sN1 = "", sN2 = "", sScore = "", sTotal = "25", sTime = "";
     JLabel lblOut = new JLabel();
 
