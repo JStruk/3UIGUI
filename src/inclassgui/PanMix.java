@@ -229,7 +229,7 @@ class PanMix extends JPanel implements ActionListener {
             repaint();
             revalidate();
         }
-        lblFinal.setText("YOUR ADDITION TEST SCORE: " + nScore + " / " + sTotal);
+        lblFinal.setText("YOUR MIXED TEST SCORE: " + nScore + " / " + sTotal);
         lblFinal.setFont(new Font("Serif", Font.PLAIN, 20));
         revalidate();
         if (nCount == 25) {
